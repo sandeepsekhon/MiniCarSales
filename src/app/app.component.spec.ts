@@ -1,13 +1,16 @@
+import { RouterModule } from '@angular/router';
+import { RouterLinkStubDirective } from './testing/router-link-stub.directive';
 import { TestBed, async } from '@angular/core/testing';
-
+import {RouterTestingModule} from '@angular/router/testing';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent, RouterLinkStubDirective
       ],
+      imports:[RouterModule, RouterTestingModule]
     }).compileComponents();
   }));
 
@@ -27,6 +30,6 @@ describe('AppComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('app works!');
+    expect(compiled.querySelector('h1').textContent).toContain('Mini Car Sales App');
   }));
 });

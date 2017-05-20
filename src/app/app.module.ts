@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { AppConfig } from './app.config';
 import { VehiclesService } from './vehicles/vehicles.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -19,6 +20,7 @@ import { VehicleEditComponent } from './vehicles/vehicle-edit/vehicle-edit.compo
     BrowserModule,
     FormsModule,
     HttpModule,
+    RouterModule,
     AppRoutingModule
   ],
   providers: [

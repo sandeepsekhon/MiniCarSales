@@ -10,7 +10,7 @@ import 'rxjs/add/operator/map';
 export class VehiclesService {
   private apiUrl;
   constructor(private http: Http, protected injector: Injector, @Inject('AppConfig') protected config: IAppConfig) {
-    this.apiUrl = 'http://localhost:49020/api';
+    this.apiUrl = config.apiUrl();
   }
 
   getVehicles() {

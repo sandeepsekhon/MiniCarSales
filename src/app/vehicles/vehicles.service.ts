@@ -1,6 +1,7 @@
+import { IAppConfig } from './../i-app-config.interface';
 import { Guid } from 'app/core/type.aliases';
 import { IVehicle } from './models/ivehicle';
-import { Injectable } from '@angular/core';
+import { Injectable, Injector, Inject } from '@angular/core';
 import { Headers, RequestMethod, Http, RequestOptions } from '@angular/http';
 import { Observable } from "rxjs";
 import 'rxjs/add/operator/map';
@@ -8,8 +9,8 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class VehiclesService {
   private apiUrl;
-  constructor(private http: Http) {
-    this.apiUrl = '';
+  constructor(private http: Http, protected injector: Injector, @Inject('AppConfig') protected config: IAppConfig) {
+    this.apiUrl = 'http://localhost:49020/api';
   }
 
   getVehicles() {

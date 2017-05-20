@@ -1,3 +1,4 @@
+import { AppConfig } from './app.config';
 import { VehiclesService } from './vehicles/vehicles.service';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -20,7 +21,10 @@ import { VehicleEditComponent } from './vehicles/vehicle-edit/vehicle-edit.compo
     HttpModule,
     AppRoutingModule
   ],
-  providers: [VehiclesService],
+  providers: [
+    VehiclesService,
+    { provide: 'AppConfig', useClass: AppConfig }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

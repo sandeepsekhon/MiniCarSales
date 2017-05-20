@@ -1,3 +1,67 @@
-<p>
-  vehicle-edit works!
-</p>
+<div class="row">
+  <div class="card">
+    <div class="card-header">
+      Add Vehicle
+    </div>
+    <form name="vehicle" (ngSubmit)="save()" #form="ngForm" novalidate>
+      <div class="card-block">
+        <div class="row">
+          <div class="form-group col-12" [class.has-danger]="hasError(make)">
+            <label for="make">Make</label>
+            <input class="form-control" name="make" [(ngModel)]="vehicle.make" required="required" [class.form-control-danger]="hasError(make)"
+              #make="ngModel">
+            <div *ngIf="hasError(make) && make.errors.required" class="form-control-feedback">Please provide the make of the vehicle.</div>
+            <div *ngIf="hasError(make) && make.errors.server" class="form-control-feedback">{{make.errors.server}}</div>
+          </div>
+          <div class="form-group col-12" [class.has-danger]="hasError(vehicleModel)">
+            <label for="vehicleModel">Model</label>
+            <input class="form-control" name="vehicleModel" [(ngModel)]="vehicle.model" required="required" [class.form-control-danger]="hasError(vehicleModel)"
+              #vehicleModel="ngModel">
+            <div *ngIf="hasError(vehicleModel) && vehicleModel.errors.required" class="form-control-feedback">Please provide the model of the vehicle.</div>
+            <div *ngIf="hasError(vehicleModel) && vehicleModel.errors.server" class="form-control-feedback">{{vehicleModel.errors.server}}</div>
+          </div>
+
+          <div class="form-group col-12" [class.has-danger]="hasError(engine)">
+            <label for="engine">Engine</label>
+            <input class="form-control" name="engine" [(ngModel)]="vehicle.engine" required="required" [class.form-control-danger]="hasError(engine)"
+              #engine="ngModel">
+            <div *ngIf="hasError(engine) && engine.errors.required" class="form-control-feedback">Please provide the value for engine.</div>
+            <div *ngIf="hasError(engine) && engine.errors.server" class="form-control-feedback">{{engine.errors.server}}</div>
+          </div>
+          <div class="form-group col-12" [class.has-danger]="hasError(wheels)">
+            <label for="wheels">Wheels</label>
+            <input class="form-control" name="wheels" type="wheels" pattern="^\d*$" [(ngModel)]="vehicle.wheels" required="required" [class.form-control-danger]="hasError(wheels)"
+              #wheels="ngModel">
+            <div *ngIf="hasError(wheels) && wheels.errors.required" class="form-control-feedback">Please provide the number of wheels.</div>
+            <div *ngIf="hasError(wheels) && wheels.errors.server" class="form-control-feedback">{{wheels.errors.server}}</div>
+          </div>
+
+          <div class="form-group col-12" *ngIf="vehicleType==='car'" [class.has-danger]="hasError(doors)">
+            <label for="doors">Doors</label>
+            <input class="form-control" name="doors" pattern="^\d*$" [(ngModel)]="vehicle.doors" [class.form-control-danger]="hasError(doors)" [class.form-control-danger]="hasError(doors)"
+              #doors="ngModel">
+            <div *ngIf="hasError(doors)" class="form-control-feedback">Please provide a valid number of doors.</div>
+            <div *ngIf="hasError(doors) && doors.errors.server" class="form-control-feedback">{{doors.errors.server}}</div>
+          </div>
+          <div class="form-group col-12" *ngIf="vehicleType==='car'" [class.has-danger]="hasError(cartype)">
+            <label for="cartype">Car Type</label>
+            <input class="form-control" name="cartype" [(ngModel)]="vehicle.carType" #cartype="ngModel" [class.form-control-danger]="hasError(cartype)"
+            />
+            <div *ngIf="hasError(cartype)" class="form-control-feedback">Please provide a valid car type.</div>
+            <div *ngIf="hasError(cartype) && cartype.errors.server" class="form-control-feedback">{{cartype.errors.server}}</div>
+          </div>
+          <div class="form-group col-12" *ngIf="vehicleType==='bike'" [class.has-danger]="hasError(biketype)">
+            <label for="biketype">Bike Type</label>
+            <input class="form-control" name="cartype" [(ngModel)]="vehicle.bikeType" #biketype="ngModel" [class.form-control-danger]="hasError(biketype)"
+            />
+            <div *ngIf="hasError(biketype)" class="form-control-feedback">Please provide a valid bike type.</div>
+            <div *ngIf="hasError(biketype) && biketype.errors.server" class="form-control-feedback">{{biketype.errors.server}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Save</button>
+      </div>
+    </form>
+  </div>
+</div>

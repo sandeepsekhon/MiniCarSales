@@ -1,0 +1,43 @@
+<div class="card">
+    <div class="card-header">
+        Vehicle List
+      </div>
+      <div class="card-block" *ngIf="!(vehicles && vehicles.length)">     
+        <p>No Vehicle data</p>
+    </div>
+    <div class="card-block">     
+        <div class="table-responsive">
+            <table class="table"
+                   *ngIf="vehicles && vehicles.length">
+                <thead>
+                    <tr>
+                        <th>Vehicle Type</th>                      
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Engine</th>
+                        <th>Wheels</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let vehicle of vehicles">
+                        <td>{{vehicle.type}}</td>
+                        <td>{{vehicle.make }}</td>
+                        <td>{{vehicle.model }}</td>
+                        <td>{{vehicle.engine }}</td>
+                        <td>{{vehicle.wheels}}</td>
+                       <td>
+                            <a class="btn btn-primary" 
+                               [routerLink]="[vehicle.id, 'edit', vehicle.type]">
+                                Edit
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary" type="button" [routerLink]="['addvehicle', 'car']" >Add Car</button>
+      <button class="btn btn-primary" type="button" [routerLink]="['addvehicle', 'bike']" >Add Bike</button>
+    </div>
+</div>

@@ -1,8 +1,8 @@
 import { IAppConfig } from './i-app-config.interface';
 export class AppConfig implements IAppConfig {
-  backendUrlBase = 'http://minicarsalesapi20170522094846.azurewebsites.net/';
+  backendUrlBase = 'http://localhost:49020';
   apiEndpointUrl =  '/api';
-  siteUrl = 'http://ngminicarsales.azurewebsites.net/';
+  siteUrl = 'http://localhost:4200';
   apiUrl() {
     return `${this.backendUrlBase}${this.apiEndpointUrl}`;
   }

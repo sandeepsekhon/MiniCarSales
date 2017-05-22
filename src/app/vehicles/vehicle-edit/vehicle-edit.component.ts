@@ -28,20 +28,18 @@ export class VehicleEditComponent implements OnInit {
       params => {
         this.vehicleType = params['type'];
         this.id = params['id'];
-        console.log(this.vehicleType);
-        if (this.id && this.id != undefined) {
+
+        if (this.id && this.id !== undefined) {
           this.vehicleService.getVehicle(this.id).subscribe(
             data => {
               if (this.vehicleType === 'car') {
-                this.vehicle = data as Car;                
+                this.vehicle = data as Car;
               }
               else if (this.vehicleType === 'bike') {
-                this.vehicle = data as Bike;                
+                this.vehicle = data as Bike;
               }
-              console.log(this.vehicle);
-
             },
-            error => console.log(error)
+            error => this.onServerError(error)
           );
         }
         else {
@@ -70,8 +68,7 @@ export class VehicleEditComponent implements OnInit {
     if (error._body && typeof error._body == "string") {
       this.serverErrors = JSON.parse(error._body);
     }
-    else
-    {
+    else {
       this.serverErrors = error._body;
     }
 
@@ -87,17 +84,17 @@ export class VehicleEditComponent implements OnInit {
   save() {
     if (this.id && this.id != undefined) {
       if (this.vehicle) {
-        this.vehicleService.putVehicle(this.id, this.vehicleType, this.vehicle).subscribe(          
-          data=> this.saveComplete(),
-          error=> this.onServerError(error)
+        this.vehicleService.putVehicle(this.id, this.vehicleType, this.vehicle).subscribe(
+          data => this.saveComplete(),
+          error => this.onServerError(error)
         );
 
       }
     }
     else {
       this.vehicleService.postVehicle(this.vehicleType, this.vehicle).subscribe(
-        data=> this.saveComplete(),
-          error=> this.onServerError(error)
+        data => this.saveComplete(),
+        error => this.onServerError(error)
       );
     }
   }

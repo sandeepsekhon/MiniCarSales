@@ -34,7 +34,6 @@ export class VehiclesService {
     let headers = new Headers({ 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': 'http://localhost:4200' });
     let options = new RequestOptions({ headers: headers });
     let postUrl = this.apiUrl + '/' + vehicleType;
-    console.log(postUrl);
     return this.http.post(postUrl, JSON.stringify(vehicle), options);
   }
 

@@ -17,9 +17,13 @@ export class VehicleListComponent implements OnInit {
         this.vehicles = data;        
       },
       error=>{
-        console.log(error);
+        this.onServerError(error);
       }
     );
+  }
+
+  onServerError(error: any) {
+
   }
 
 }

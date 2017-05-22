@@ -68,11 +68,13 @@ export class VehicleEditComponent implements OnInit {
     this.serverErrors = {};
     // todo clear existing server errors more intelligently
     if (error._body && typeof error._body == "string") {
-      let parse = JSON.parse(error._body);
-      if (typeof parse == "object" && parse.modelState) {
-        this.serverErrors = parse.modelState;
-      }
+      this.serverErrors = JSON.parse(error._body);
     }
+    else
+    {
+      this.serverErrors = error._body;
+    }
+
     if (Object.keys(this.serverErrors).length) {
       Object.keys(this.form.controls).forEach(key => {
         if (this.serverErrors[key]) {
@@ -85,15 +87,17 @@ export class VehicleEditComponent implements OnInit {
   save() {
     if (this.id && this.id != undefined) {
       if (this.vehicle) {
-        this.vehicleService.putVehicle(this.id, this.vehicleType, this.vehicle).subscribe(
-          () => this.saveComplete()
+        this.vehicleService.putVehicle(this.id, this.vehicleType, this.vehicle).subscribe(          
+          data=> this.saveComplete(),
+          error=> this.onServerError(error)
         );
 
       }
     }
     else {
       this.vehicleService.postVehicle(this.vehicleType, this.vehicle).subscribe(
-        () => this.saveComplete()
+        data=> this.saveComplete(),
+          error=> this.onServerError(error)
       );
     }
   }

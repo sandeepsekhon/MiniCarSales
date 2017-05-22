@@ -21,8 +21,7 @@ export class VehicleEditComponent implements OnInit {
   private vehicleType: string;
   protected serverErrors: any = {};
   constructor(private vehicleService: VehiclesService, private router: Router, private route: ActivatedRoute) { }
-  @ViewChild('form')
-  protected form: NgForm;
+  @ViewChild('form') form: NgForm;
   ngOnInit() {
     this.route.params.subscribe(
       params => {

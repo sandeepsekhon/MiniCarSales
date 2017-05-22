@@ -17,7 +17,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 export class VehicleEditComponent implements OnInit {
   private id: Guid;
-  protected vehicle;
+  protected vehicle: IVehicle;
   private vehicleType: string;
   protected serverErrors: any = {};
   constructor(private vehicleService: VehiclesService, private router: Router, private route: ActivatedRoute) { }
@@ -28,7 +28,17 @@ export class VehicleEditComponent implements OnInit {
       params => {
         this.vehicleType = params['type'];
         this.id = params['id'];
-
+        if (this.vehicleType === 'car') {
+            this.vehicle = new Car();
+            this.vehicle.type = 'car';
+          }
+          else if (this.vehicleType === 'bike') {
+            this.vehicle = new Bike();
+            this.vehicle.type = 'bike';
+          }
+          else {
+            this.vehicle = new Vehicle();
+          }
         if (this.id && this.id !== undefined) {
           this.vehicleService.getVehicle(this.id).subscribe(
             data => {
@@ -41,19 +51,6 @@ export class VehicleEditComponent implements OnInit {
             },
             error => this.onServerError(error)
           );
-        }
-        else {
-          if (this.vehicleType === 'car') {
-            this.vehicle = new Car();
-            this.vehicle.type = 'car';
-          }
-          else if (this.vehicleType === 'bike') {
-            this.vehicle = new Bike();
-            this.vehicle.type = 'bike';
-          }
-          else {
-            this.vehicle = new Vehicle();
-          }
         }
       }
     );

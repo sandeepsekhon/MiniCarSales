@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import {RouterTestingModule} from '@angular/router/testing';
 import { VehicleListComponent } from './vehicle-list.component';
-import { RouterLinkStubDirective } from 'app/testing/router-link-stub.directive';
+import { RouterLinkStubDirective } from 'testing/router-link-stub.directive';
 import { RouterModule } from '@angular/router';
 import { Http, BaseRequestOptions, HttpModule } from '@angular/http';
 import { MockBackend } from '@angular/http/testing';

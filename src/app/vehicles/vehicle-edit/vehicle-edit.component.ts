@@ -17,11 +17,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 
 export class VehicleEditComponent implements OnInit {
   private id: Guid;
-  protected vehicle: IVehicle;
-  private vehicleType: string;
-  protected serverErrors: any = {};
+  vehicle: IVehicle;
+  vehicleType: string;
+  serverErrors: any = {};
   constructor(private vehicleService: VehiclesService, private router: Router, private route: ActivatedRoute) { }
-  @ViewChild('form') form: NgForm;
+  @ViewChild('form')
+  form: NgForm;
   ngOnInit() {
     this.route.params.subscribe(
       params => {
